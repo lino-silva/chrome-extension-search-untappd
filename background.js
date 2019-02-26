@@ -9,7 +9,7 @@ chrome.runtime.onInstalled.addListener(function () {
 
 chrome.contextMenus.onClicked.addListener(function (info) {
   if (info.menuItemId === "search-untappd") {
-    const url = `https://untappd.com/search?q=${info.selectionText}`;
+    const url = `https://untappd.com/search?q=${encodeURIComponent(info.selectionText)}`;
     chrome.tabs.create({ url });
   }
 });
