@@ -7,7 +7,7 @@
 
 const CONSTANTS = {
   baseUrl: 'https://untappd.com/search?q=',
-  trim: /\s?(can(s)?)?\s?\d+(\.\d+)?\s?([cdm]?)l$/ig // Fucking regexes.
+  trim: /\s*(can(s)?)?\s?(\d+([\.\,]\d+)?\s?([cdm]?)l)?\s*$/ig // Fucking regexes.
 }
 chrome.runtime.onInstalled.addListener(function () {
   chrome.contextMenus.create({
