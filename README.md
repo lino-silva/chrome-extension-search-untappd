@@ -5,7 +5,7 @@ It's as simple as it says - a Google Chrome extension that allows you to easily 
 ## Cleaning search terms
 This is the RegEx being used to clean up the selected text:
 
-`\s*(can(s)?)?\s?(\d+([\.\,]\d+)?\s?([cdm]?)l)?\s*$`
+`\s*(can(s)?)?\s?(\d+([\.\,]\d+)?\s?([cdm]?)l\.?)?\.?\s*$`
 
 Everyone else:
 >  Why don't you just select the text you want to search for, then?
@@ -18,21 +18,21 @@ Great question! Before I start though, let me split it into parts:
 
 First, by getting rid of the initial `/ ____ /ig`, which makes it a global and case-insensitive search:
 
-`\s*(can(s)?)?\s?(\d+([\.\,]\d+)?\s?([cdm]?)l)?\s*$`
+`\s*(can(s)?)?\s?(\d+([\.\,]\d+)?\s?([cdm]?)l\.?)?\s*$`
 
 Then, the outmost characters are there to remove trailing spaces, and make sure we're only searching for text at the end of the selected part `\s* _____ \s*$`:
 
-`(can(s)?)?\s?(\d+([\.\,]\d+)?\s?([cdm]?)l)?`
+`(can(s)?)?\s?(\d+([\.\,]\d+)?\s?([cdm]?)l\.?)?`
 
 Then, we search whether the text contains the word `can`, in singular, plural or in any capitalisation, as well as an optional space after it: `(can(s)?)?\s?`
 
-`(\d+([\.\,]\d+)?\s?([cdm]?)l)?`
+`(\d+([\.\,]\d+)?\s?([cdm]?)l\.?)?`
 
 After that, we look for any indication of the beer's quantity (that may or may not be present, as indicated with the `( ___ )?`): `(\d+([\.\,]\d+)?\s?`, matching anything from a single digit (`1`, `2`, `400`) to decimals (`1.2`, `4.5`, `3,5`, etc.), as well as a trailing space after it.
 
-`([cdm]?)l)?`
+`([cdm]?)l\.?)?`
 
-At last, we look for the beverage's unit of measurement (again, optional), currently only supporting the metric system (`cl`, `ml`, `dl`, `l`).
+At last, we look for the beverage's unit of measurement (again, optional), currently only supporting the metric system (`cl`, `ml`, `dl`, `l`) with an optional period `.` for the abbreviation.
 
 > Some people, when confronted with a problem, think “I know,
 >
