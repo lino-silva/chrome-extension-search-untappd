@@ -14,7 +14,7 @@ Well... I'm lazy. And depending on the website's layout, selecting text in links
 
 > What does that oddly (some might say unnecessary) RegEx do then?
 
-Great question! Before I start though, let me split it into parts:
+Great question! Let me split it into parts:
 
 First, by getting rid of the initial `/ ____ /ig`, which makes it a global and case-insensitive search:
 
