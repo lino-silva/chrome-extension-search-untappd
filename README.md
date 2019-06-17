@@ -1,5 +1,6 @@
-# Google Chrome "Search in Untappd" extension
 ![Search in Untappd](./search_untappd.gif)
+
+# Google Chrome "Search in Untappd" extension
 It's as simple as it says - a Google Chrome extension that allows you to easily select text on a webpage and search it on untappd.com
 ## About untappd.com
 From [Wikipedia](https://en.wikipedia.org/wiki/Untappd):
