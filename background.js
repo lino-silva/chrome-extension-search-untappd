@@ -10,20 +10,43 @@ const CONSTANTS = {
   trim: /\s*(can(s)?)?\s?(\d+([\.\,]\d+)?\s?([cdm]?)l\.?)?\s*$/ig // Fucking regexes.
 }
 chrome.runtime.onInstalled.addListener(function () {
+  
   chrome.contextMenus.create({
     title: 'Search in Untappd',
     id: 'search-untappd',
     contexts: ['selection'],
   });
+
+  chrome.contextMenus.create({
+    title: 'Search in Untappd in background',
+    id: 'search-untappd-bg',
+    contexts: ['selection'],
+  });
 });
 
 chrome.contextMenus.onClicked.addListener(function (info) {
-  if (info && info.selectionText && info.menuItemId === 'search-untappd') {
+  
+  if (info && info.selectionText && info.menuItemId.startsWith("search-untappd")) {
+    
+    let tabActive = null;
+
+    switch(info.menuItemId) {
+      case 'search-untappd':
+        tabActive = true;
+        break;
+      case 'search-untappd-bg':
+        tabActive = false;
+        break;
+      default:
+      break;
+    }
+
     const trimmedText = info.selectionText.replace(CONSTANTS.trim, '');
     const url = `${CONSTANTS.baseUrl}${encodeURIComponent(trimmedText)}`;
-    chrome.tabs.create({
-      url,
-      active: false
+    
+    chrome.tabs.create({ 
+      url, 
+      active: tabActive
     });
   }
 });
