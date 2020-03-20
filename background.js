@@ -21,6 +21,9 @@ chrome.contextMenus.onClicked.addListener(function (info) {
   if (info && info.selectionText && info.menuItemId === 'search-untappd') {
     const trimmedText = info.selectionText.replace(CONSTANTS.trim, '');
     const url = `${CONSTANTS.baseUrl}${encodeURIComponent(trimmedText)}`;
-    chrome.tabs.create({ url });
+    chrome.tabs.create({
+      url,
+      active: false
+    });
   }
 });
